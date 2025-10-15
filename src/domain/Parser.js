@@ -4,7 +4,7 @@ class Parser {
 
     if (input.startsWith("//")) {
       const { delimiterPart, bodyPart } = this.#isCustomDelimiter(input);
-      delimiter = new RegExp(delimiterPart);
+      delimiter = new RegExp(`${delimiterPart}|,|:`);
       input = bodyPart;
     }
 
@@ -12,14 +12,15 @@ class Parser {
   }
 
   #isCustomDelimiter(input) {
-    const delimiterEnd = input.indexOf("\n");
+    const delimiterEnd = input.indexOf("\\n");
 
     if (delimiterEnd === -1) {
       throw new Error("커스텀 구분자 형식이 잘못되었습니다.");
     }
 
     const delimiterPart = input.slice(2, delimiterEnd);
-    const bodyPart = input.slice(delimiterEnd + 1);
+    const bodyPart = input.slice(delimiterEnd + 2);
+    console.log(delimiterPart);
 
     return { delimiterPart, bodyPart };
   }
