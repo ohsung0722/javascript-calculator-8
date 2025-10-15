@@ -1,5 +1,3 @@
-import IOFactory from "../factory/IOFactory";
-
 class Parser {
   parse(input) {
     let delimiter = /,|:/;
