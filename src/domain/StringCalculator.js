@@ -1,5 +1,5 @@
-import Parser from "./Parser";
-import Validator from "./Validator";
+import Parser from "./Parser.js";
+import Validator from "./Validator.js";
 
 class StringCalculator {
   constructor() {
