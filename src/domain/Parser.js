@@ -20,7 +20,6 @@ class Parser {
 
     const delimiterPart = input.slice(2, delimiterEnd);
     const bodyPart = input.slice(delimiterEnd + 2);
-    console.log(delimiterPart);
 
     return { delimiterPart, bodyPart };
   }

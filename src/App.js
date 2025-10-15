@@ -15,6 +15,7 @@ class App {
       outputView.printResult(result);
     } catch (error) {
       outputView.printError(error.message);
+      throw new Error(`[ERROR] ${error.message}`);
     }
   }
 }
