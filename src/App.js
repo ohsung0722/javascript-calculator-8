@@ -1,5 +1,22 @@
+import StringCalculator from "./domain/StringCalculator.js";
+import IOFactory from "./factory/IOFactory.js";
+
 class App {
-  async run() {}
+  constructor() {
+    this.stringCalculator = new StringCalculator();
+  }
+  async run() {
+    const inputView = IOFactory.createInputView();
+    const outputView = IOFactory.createOutputView();
+
+    try {
+      const input = await inputView.promptUser();
+      const result = this.stringCalculator.calculate(input);
+      outputView.printResult(result);
+    } catch (error) {
+      outputView.printError(error.message);
+    }
+  }
 }
 
 export default App;
