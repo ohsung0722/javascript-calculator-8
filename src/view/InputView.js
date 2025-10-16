@@ -1,8 +1,9 @@
 import { Console } from "@woowacourse/mission-utils";
+import { INPUT_MESSAGE } from "../constants/messages.js";
 
 class InputView {
   async promptUser() {
-    const input = await Console.readLineAsync("덧셈할 문자를 입력해주세요.\n");
+    const input = await Console.readLineAsync(INPUT_MESSAGE);
     return input;
   }
 }

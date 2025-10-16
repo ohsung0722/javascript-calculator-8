@@ -1,12 +1,13 @@
 import { Console } from "@woowacourse/mission-utils";
+import { ERROR_PREFIX, RESULT_MESSAGE } from "../constants/messages";
 
 class OutputView {
   printResult(result) {
-    Console.print(`결과 : ${result}`);
+    Console.print(`${RESULT_MESSAGE} ${result}`);
   }
 
   printError(errorMessage) {
-    Console.print(`[ERROR] ${errorMessage}`);
+    Console.print(`${ERROR_PREFIX} ${errorMessage}`);
   }
 }
 

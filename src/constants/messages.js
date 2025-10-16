@@ -1,4 +1,4 @@
-export const RESULT_MESSAGE = "결과 : {result}";
+export const RESULT_MESSAGE = "결과 :";
 export const INPUT_MESSAGE = "덧셈할 문자를 입력해주세요.\n";
 
 export const ERROR_PREFIX = "[ERROR]";

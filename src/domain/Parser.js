@@ -1,8 +1,17 @@
+import { ERROR_DELIMITER } from "../constants/messages.js";
+import {
+  CUSOM_DELIMITER_END,
+  CUSTOM_DELIMITER_END_LENGTH,
+  CUSTOM_DELIMITER_PREFIX,
+  CUSTOM_DELIMITER_PREFIX_LENGTH,
+  DELIMITER,
+} from "../constants/parser.js";
+
 class Parser {
   parse(input) {
-    let delimiter = /,|:/;
+    let delimiter = DELIMITER;
 
-    if (input.startsWith("//")) {
+    if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
       const { delimiterPart, bodyPart } = this.#isCustomDelimiter(input);
       delimiter = new RegExp(`${delimiterPart}|,|:`);
       input = bodyPart;
@@ -12,14 +21,17 @@ class Parser {
   }
 
   #isCustomDelimiter(input) {
-    const delimiterEnd = input.indexOf("\\n");
+    const delimiterEnd = input.indexOf(CUSOM_DELIMITER_END);
 
     if (delimiterEnd === -1) {
-      throw new Error("커스텀 구분자 형식이 잘못되었습니다.");
+      throw new Error(ERROR_DELIMITER);
     }
 
-    const delimiterPart = input.slice(2, delimiterEnd);
-    const bodyPart = input.slice(delimiterEnd + 2);
+    const delimiterPart = input.slice(
+      CUSTOM_DELIMITER_PREFIX_LENGTH,
+      delimiterEnd
+    );
+    const bodyPart = input.slice(delimiterEnd + CUSTOM_DELIMITER_END_LENGTH);
 
     return { delimiterPart, bodyPart };
   }
