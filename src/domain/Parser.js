@@ -5,6 +5,7 @@ import {
   CUSTOM_DELIMITER_PREFIX,
   CUSTOM_DELIMITER_PREFIX_LENGTH,
   DELIMITER,
+  INVALID_DELIMITER_INDEX,
 } from "../constants/parser.js";
 
 class Parser {
@@ -12,7 +13,7 @@ class Parser {
     let delimiter = DELIMITER;
 
     if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
-      const { delimiterPart, bodyPart } = this.#isCustomDelimiter(input);
+      const { delimiterPart, bodyPart } = this.#parseCustomDelimiter(input);
       delimiter = new RegExp(`${delimiterPart}|,|:`);
       input = bodyPart;
     }
@@ -20,10 +21,11 @@ class Parser {
     return input.split(delimiter).map(Number);
   }
 
-  #isCustomDelimiter(input) {
+  #parseCustomDelimiter(input) {
     const delimiterEnd = input.indexOf(CUSOM_DELIMITER_END);
+    const isInvalidCustomDelimiter = delimiterEnd === INVALID_DELIMITER_INDEX;
 
-    if (delimiterEnd === -1) {
+    if (isInvalidCustomDelimiter) {
       throw new Error(ERROR_DELIMITER);
     }
 
