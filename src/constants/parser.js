@@ -1,0 +1,9 @@
+export const DELIMITER = /,|:/;
+
+export const CUSTOM_DELIMITER_PREFIX = "//";
+export const CUSTOM_DELIMITER_PREFIX_LENGTH = CUSTOM_DELIMITER_PREFIX.length;
+
+export const CUSOM_DELIMITER_END = "\\n";
+export const CUSTOM_DELIMITER_END_LENGTH = CUSOM_DELIMITER_END.length;
+
+export const INVALID_DELIMITER_INDEX = -1;
