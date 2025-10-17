@@ -5,6 +5,7 @@ import {
   CUSTOM_DELIMITER_PREFIX,
   CUSTOM_DELIMITER_PREFIX_LENGTH,
   DELIMITER,
+  EMPTY_CUSTOM_DELIMITER,
   INVALID_DELIMITER_INDEX,
 } from "../constants/parser.js";
 
@@ -31,7 +32,9 @@ class Parser {
   //커스텀 구분자 추출
   #parseCustomDelimiter(input) {
     const delimiterEnd = input.indexOf(CUSOM_DELIMITER_END);
-    const isInvalidCustomDelimiter = delimiterEnd === INVALID_DELIMITER_INDEX;
+    const isInvalidCustomDelimiter =
+      delimiterEnd === INVALID_DELIMITER_INDEX ||
+      delimiterEnd === EMPTY_CUSTOM_DELIMITER;
 
     if (isInvalidCustomDelimiter) {
       throw new Error(ERROR_DELIMITER);
@@ -41,6 +44,7 @@ class Parser {
       CUSTOM_DELIMITER_PREFIX_LENGTH,
       delimiterEnd
     );
+
     const bodyPart = input.slice(delimiterEnd + CUSTOM_DELIMITER_END_LENGTH);
 
     return { delimiterPart, bodyPart };

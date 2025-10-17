@@ -7,3 +7,4 @@ export const CUSOM_DELIMITER_END = "\\n";
 export const CUSTOM_DELIMITER_END_LENGTH = CUSOM_DELIMITER_END.length;
 
 export const INVALID_DELIMITER_INDEX = -1;
+export const EMPTY_CUSTOM_DELIMITER = 2;
