@@ -10,17 +10,25 @@ import {
 
 class Parser {
   parse(input) {
+    const { delimiter, body } = this.#buildDelimiter(input);
+    return body.split(delimiter).map(Number);
+  }
+
+  //구분자와 body 관리
+  #buildDelimiter(input) {
     let delimiter = DELIMITER;
+    let body = input;
 
     if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
       const { delimiterPart, bodyPart } = this.#parseCustomDelimiter(input);
       delimiter = new RegExp(`${delimiterPart}|,|:`);
-      input = bodyPart;
+      body = bodyPart;
     }
 
-    return input.split(delimiter).map(Number);
+    return { delimiter, body };
   }
 
+  //커스텀 구분자 추출
   #parseCustomDelimiter(input) {
     const delimiterEnd = input.indexOf(CUSOM_DELIMITER_END);
     const isInvalidCustomDelimiter = delimiterEnd === INVALID_DELIMITER_INDEX;
