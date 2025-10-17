@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { ERROR_PREFIX, RESULT_MESSAGE } from "../constants/messages";
+import { ERROR_PREFIX, RESULT_MESSAGE } from "../constants/messages.js";
 
 class OutputView {
   printResult(result) {
